@@ -9,6 +9,8 @@ import javax.inject.Named;
 
 import org.camunda.bpm.engine.cdi.annotation.ProcessVariable;
 
+import ch.fhnw.bscwi.gpm.loanapproval.service.client.processrequestservice.ProcessRequestServiceService;
+
 @Named
 public class ProcessRequestService {
 
@@ -21,10 +23,10 @@ public class ProcessRequestService {
 	public Object amount;
 
 	public boolean processRequest() {
-		/*ProcessRequestServiceService service = new ProcessRequestServiceService();
-		ch.fhnw.bscwi.gpm.loanapproval.service.processrequestservice.ProcessRequestService port = service.getProcessRequestServicePort();
+		ProcessRequestServiceService service = new ProcessRequestServiceService();
+		ch.fhnw.bscwi.gpm.loanapproval.service.client.processrequestservice.ProcessRequestService port = service.getProcessRequestServicePort();
 		port.processRequest(Long.valueOf((String) customerId),
-				Long.valueOf((Integer) amount));*/
+				Long.valueOf((Integer) amount));
 		return true;
 	}
 
