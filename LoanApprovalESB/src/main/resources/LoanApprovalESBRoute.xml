@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="ASCII"?>
+<routes xmlns="http://camel.apache.org/schema/spring">
+    <route>
+        <from uri="switchyard://LoanApprovalESBService"/>
+        <choice>
+            <when>
+                <simple>${bodyAs(String)} contains 'loadCustomer'</simple>
+                <to uri="switchyard://CustomerWebService"/>
+            </when>
+            <when>
+                <simple>${bodyAs(String)} contains 'processRequest'</simple>
+                <to uri="switchyard://ProcessRequestService"/>
+            </when>
+        </choice>
+    </route>
+</routes>

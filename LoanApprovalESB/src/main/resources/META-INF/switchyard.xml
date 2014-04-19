@@ -24,5 +24,31 @@
         <soap:wsdl>CustomerWebService.wsdl</soap:wsdl>
       </soap:binding.soap>
     </sca:service>
+    <sca:component name="LoanApprovalESBRoute">
+      <camel:implementation.camel>
+        <camel:xml path="LoanApprovalESBRoute.xml"/>
+      </camel:implementation.camel>
+      <sca:service name="LoanApprovalESBService">
+        <sca:interface.wsdl interface="LoanApprovalESBService.wsdl#wsdl.porttype(LoanApprovalESBService)"/>
+      </sca:service>
+      <sca:reference name="CustomerWebService">
+        <sca:interface.wsdl interface="CustomerWebService.wsdl#wsdl.porttype(CustomerWebService)"/>
+      </sca:reference>
+      <sca:reference name="ProcessRequestService">
+        <sca:interface.wsdl interface="ProcessRequestServiceService.wsdl#wsdl.porttype(ProcessRequestService)"/>
+      </sca:reference>
+    </sca:component>
+    <sca:reference name="ProcessRequestService" multiplicity="0..1" promote="LoanApprovalESBRoute/ProcessRequestService">
+      <sca:interface.wsdl interface="ProcessRequestServiceService.wsdl#wsdl.porttype(ProcessRequestService)"/>
+      <soap:binding.soap name="soap1">
+        <soap:wsdl>ProcessRequestServiceService.wsdl</soap:wsdl>
+      </soap:binding.soap>
+    </sca:reference>
+    <sca:service name="LoanApprovalESBService" promote="LoanApprovalESBRoute/LoanApprovalESBService">
+      <sca:interface.wsdl interface="LoanApprovalESBService.wsdl#wsdl.porttype(LoanApprovalESBService)"/>
+      <soap:binding.soap name="soap1">
+        <soap:wsdl>LoanApprovalESBService.wsdl</soap:wsdl>
+      </soap:binding.soap>
+    </sca:service>
   </sca:composite>
 </sy:switchyard>
