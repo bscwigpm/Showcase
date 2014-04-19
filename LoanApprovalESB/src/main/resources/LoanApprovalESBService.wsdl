@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://service.loanapproval.gpm.bscwi.fhnw.ch/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="LoanApprovalESBService"
+	targetNamespace="http://service.loanapproval.gpm.bscwi.fhnw.ch/">
+	<wsdl:types>
+		<xsd:schema targetNamespace="http://service.loanapproval.gpm.bscwi.fhnw.ch/">
+			<xsd:element name="loadCustomer" type="tns:loadCustomer" />
+
+			<xsd:element name="loadCustomerResponse" type="tns:loadCustomerResponse" />
+
+			<xsd:complexType name="loadCustomer">
+				<xsd:sequence>
+					<xsd:element name="customerId" type="xsd:long"
+						minOccurs="0" />
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="loadCustomerResponse">
+				<xsd:sequence>
+					<xsd:element name="return" type="tns:customerDTO"
+						minOccurs="0" />
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="customerDTO">
+				<xsd:sequence>
+					<xsd:element name="age" type="xsd:int" minOccurs="0" />
+					<xsd:element name="dateOfBirth" type="xsd:string"
+						minOccurs="0" />
+					<xsd:element name="email" type="xsd:string" minOccurs="0" />
+					<xsd:element name="firstName" type="xsd:string"
+						minOccurs="0" />
+					<xsd:element name="id" type="xsd:long" minOccurs="0" />
+					<xsd:element name="lastName" type="xsd:string"
+						minOccurs="0" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:element name="processRequest" type="tns:processRequest" />
+
+			<xsd:element name="processRequestResponse" type="tns:processRequestResponse" />
+
+			<xsd:complexType name="processRequest">
+				<xsd:sequence>
+					<xsd:element name="arg0" type="xsd:long" minOccurs="0" />
+					<xsd:element name="arg1" type="xsd:long" minOccurs="0" />
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="processRequestResponse">
+				<xsd:sequence>
+					<xsd:element name="return" type="xsd:boolean" />
+				</xsd:sequence>
+			</xsd:complexType>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="loadCustomer">
+		<wsdl:part name="parameters" element="tns:loadCustomer" />
+	</wsdl:message>
+	<wsdl:message name="loadCustomerResponse">
+		<wsdl:part name="parameters" element="tns:loadCustomerResponse" />
+	</wsdl:message>
+	<wsdl:message name="processRequest">
+		<wsdl:part name="parameters" element="tns:processRequest" />
+	</wsdl:message>
+	<wsdl:message name="processRequestResponse">
+		<wsdl:part name="parameters" element="tns:processRequestResponse" />
+	</wsdl:message>
+	<wsdl:portType name="LoanApprovalESBService">
+		<wsdl:operation name="loadCustomer">
+			<wsdl:input message="tns:loadCustomer" />
+			<wsdl:output message="tns:loadCustomerResponse" />
+		</wsdl:operation>
+		<wsdl:operation name="processRequest">
+			<wsdl:input message="tns:processRequest" />
+			<wsdl:output message="tns:processRequestResponse" />
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="LoanApprovalESBServiceSOAP" type="tns:LoanApprovalESBService">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="loadCustomer">
+			<soap:operation soapAction="" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="processRequest">
+			<soap:operation soapAction="" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="LoanApprovalESBService">
+		<wsdl:port binding="tns:LoanApprovalESBServiceSOAP" name="LoanApprovalESBServiceSOAP">
+			<soap:address location="http://www.example.org/" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>
