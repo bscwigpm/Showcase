@@ -2,14 +2,17 @@
 <routes xmlns="http://camel.apache.org/schema/spring">
     <route>
         <from uri="switchyard://LoanApprovalESBService"/>
+        <log message="${bodyAs(String)}"/>
         <choice>
             <when>
                 <simple>${bodyAs(String)} contains 'loadCustomer'</simple>
                 <to uri="switchyard://CustomerWebService"/>
+                <log message="${bodyAs(String)}"/>
             </when>
             <when>
                 <simple>${bodyAs(String)} contains 'processRequest'</simple>
                 <to uri="switchyard://ProcessRequestService"/>
+                <log message="${bodyAs(String)}"/>
             </when>
         </choice>
     </route>

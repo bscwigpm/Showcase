@@ -1,7 +1,9 @@
 package ch.fhnw.bscwi.gpm.loanapproval.service;
 
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.xml.ws.WebServiceRef;
 
 import org.camunda.bpm.engine.cdi.BusinessProcess;
 import org.camunda.bpm.engine.cdi.annotation.ProcessVariable;
@@ -12,6 +14,7 @@ import ch.fhnw.bscwi.gpm.loanapproval.service.client.customerwebservice.Customer
 
 
 @Named
+@Stateless
 public class CustomerService {
 
 	@Inject
@@ -20,11 +23,12 @@ public class CustomerService {
 
 	@Inject
 	private BusinessProcess businessProcess;
+	
+	@WebServiceRef(type=CustomerWebService_Service.class)
+	private CustomerWebService customerWebService;
 
 	public void loadCustomer() {
-		CustomerWebService_Service service = new CustomerWebService_Service();
-        CustomerWebService port = service.getCustomerWebServicePort();
-        CustomerDTO customerDTO = port.loadCustomer(Long
+        CustomerDTO customerDTO = customerWebService.loadCustomer(Long
 				.valueOf((String) customerId));
 		if (customerDTO != null) {
 			businessProcess.setVariable("customerFirstName", customerDTO.getFirstName());
