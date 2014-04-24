@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="200" prefWidth="242.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.fhnw.bscwi.gpm.simplecustomerservice.consumer.FXMLController">
+    <children>
+        <Button fx:id="button" layoutX="14.0" layoutY="88.0" onAction="#handleSOAPButtonAction" prefHeight="25.0" prefWidth="220.0" text="SOAP: Is already a customer?" />
+        <Label fx:id="resultLabel" layoutX="11.0" layoutY="151.0" minHeight="16" minWidth="69" prefHeight="17.0" prefWidth="220.0" /><Label layoutX="16.0" layoutY="53.0" text="First Name:" /><Label layoutX="16.0" layoutY="18.0" text="Last Name;" /><TextField id="lastNameTextField" fx:id="lastNameTextField" layoutX="86.0" layoutY="14.0" /><TextField fx:id="firstNameTextField" layoutX="86.24609375" layoutY="48.5" /><Button layoutX="13.0" layoutY="119.0" mnemonicParsing="false" onAction="#handleRESTButtonAction" prefHeight="25.0" prefWidth="220.0" text="REST: Is already a customer?" />
+    </children>
+</AnchorPane>
